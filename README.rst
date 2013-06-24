@@ -31,6 +31,7 @@ Output
 ------
 #. A ofx file converted from the csv file (default in the folder ./ofx)
 #. Some statistics:
+
 ::
 
    TRANSACTIONS: 349
