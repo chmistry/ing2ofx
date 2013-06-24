@@ -15,6 +15,7 @@ The ofx specification can be downloaded from http://www.ofx.net/
 Usage
 -----
 ::
+
    usage: ing2ofx [-h] [-o --outfile] [-d --directory] [--convert] csvfile
 
    positional arguments:
@@ -31,6 +32,7 @@ Output
 #. A ofx file converted from the csv file (default in the folder ./ofx)
 #. Some statistics:
 ::
+
    TRANSACTIONS: 349
    IN:           test2.csv
    OUT:          test2.ofx
