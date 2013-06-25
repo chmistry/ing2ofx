@@ -94,7 +94,8 @@ class csvfile():
             #NAME maps to "Naam / Omschrijving", the while loop removes any double spaces.
             while row['Naam / Omschrijving'].strip().find("  ") > 0:
                row['Naam / Omschrijving'] = row['Naam / Omschrijving'].strip().replace("  ", " ")
-            name = row['Naam / Omschrijving']
+            #Replace & symbol with &amp to make xml compliant
+            name = row['Naam / Omschrijving'].replace("&", "&amp")
             
             #BANKACCTTO maps to "Tegenrekening" 
             accountto = row['Tegenrekening']
@@ -102,7 +103,8 @@ class csvfile():
             #MEMO maps to "Mededelingen", the while loop removes any double spaces.
             while row['Mededelingen'].strip().find("  ") > 0:
                row['Mededelingen'] = row['Mededelingen'].strip().replace("  ", " ")
-            memo = row['Mededelingen']
+            #Replace & symbol with &amp to make xml compliant
+            memo = str(row['Mededelingen']).replace("&", "&amp")
             
             self.transactions.append({'account': account, 'trntype': trntype, 'dtposted': dtposted, 
                                           'trnamt': trnamt, 'fitid': fitid, 'name': name, 'accountto': accountto, 
@@ -225,7 +227,9 @@ class ofxwriter():
          ofxfile.write(message_footer)
          
 if __name__ == "__main__":
-   ofx = ofxwriter()
+   #ofx = ofxwriter()
+   csv = csvfile()
+   
 
 
 
