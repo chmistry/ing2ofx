@@ -29,7 +29,7 @@ Usage
 
 Output
 ------
-#. A ofx file converted from the csv file (default in the folder ./ofx)
+#. An ofx file converted from the csv file (default in the folder ./ofx)
 #. Some statistics:
 
 ::
