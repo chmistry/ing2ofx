@@ -8,7 +8,7 @@ that can be read by a program like GnuCash (www.gucash.org).
 
 This script is adapted from pb2ofx.pl Copyright 2008, 2009, 2010 Peter Vermaas,
 originally found at http://blog.maashoek.nl/2009/07/gnucash-en-internetbankieren/ 
-which is now dead.
+which is now offline.
 
 The ofx specification can be downloaded from http://www.ofx.net/
 
