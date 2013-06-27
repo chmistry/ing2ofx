@@ -40,9 +40,9 @@ parser = argparse.ArgumentParser(prog = 'ing2ofx', description= """
                                  The default output filename is the input filename.
                                  """)
 parser.add_argument('csvfile', help='A csvfile to process')
-parser.add_argument('-o', metavar = '--outfile', dest = 'outfile', 
+parser.add_argument('-o, --outfile', dest = 'outfile', 
    help = 'output filename', default=None)
-parser.add_argument('-d', metavar = '--directory', dest = 'dir', 
+parser.add_argument('-d, directory', dest = 'dir', 
    help = 'directory to store output, default is ./ofx', default='ofx')
 parser.add_argument('--convert', dest = 'convert', 
    help = "Convert decimal separator to dots (.), default is false", action='store_true')
@@ -227,8 +227,8 @@ class ofxwriter():
          ofxfile.write(message_footer)
          
 if __name__ == "__main__":
-   #ofx = ofxwriter()
-   csv = csvfile()
+   ofx = ofxwriter()
+
    
 
 
