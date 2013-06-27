@@ -154,7 +154,7 @@ class ofxwriter():
       
       filepath = os.path.join(os.getcwd(), args.dir, filename)
       
-      #Initiate a csv object that contains all the data in a dict.
+      #Initiate a csv object that contains all the data in a set.
       csv = csvfile()
       
       #Determine unique accounts and start and end dates
