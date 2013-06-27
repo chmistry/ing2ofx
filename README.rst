@@ -16,16 +16,24 @@ Usage
 -----
 ::
 
-   usage: ing2ofx [-h] [-o --outfile] [-d --directory] [--convert] csvfile
+    usage: ing2ofx [-h] [-o, --outfile OUTFILE] [-d, --directory DIR]
+                   [-c, --convert]
+                   csvfile
 
-   positional arguments:
-     csvfile         A csvfile to process
+    This program converts ING (www.ing.nl) CSV files to OFX format. The default
+    output filename is the input filename.
 
-   optional arguments:
-     -h, --help      show this help message and exit
-     -o --outfile    output filename
-     -d --directory  directory to store output, default is ./ofx
-     --convert       Convert decimal separator to dots (.), default is false
+    positional arguments:
+      csvfile               A csvfile to process
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -o, --outfile OUTFILE
+                            Output filename
+      -d, --directory DIR   Directory to store output, default is ./ofx
+      -c, --convert         Convert decimal separator to dots (.), default is
+                            false
+
 
 Output
 ------

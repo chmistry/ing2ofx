@@ -41,10 +41,10 @@ parser = argparse.ArgumentParser(prog = 'ing2ofx', description= """
                                  """)
 parser.add_argument('csvfile', help='A csvfile to process')
 parser.add_argument('-o, --outfile', dest = 'outfile', 
-   help = 'output filename', default=None)
-parser.add_argument('-d, directory', dest = 'dir', 
-   help = 'directory to store output, default is ./ofx', default='ofx')
-parser.add_argument('--convert', dest = 'convert', 
+   help = 'Output filename', default=None)
+parser.add_argument('-d, --directory', dest = 'dir', 
+   help = 'Directory to store output, default is ./ofx', default='ofx')
+parser.add_argument('-c, --convert', dest = 'convert', 
    help = "Convert decimal separator to dots (.), default is false", action='store_true')
 args = parser.parse_args()
 
