@@ -15,6 +15,7 @@ The ofx specification can be downloaded from http://www.ofx.net/
 Usage - Graphical user interface:
 ---------------------------------
 ::
+
 On the command line: python gui.py
 
 Usage - command line:
