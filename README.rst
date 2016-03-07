@@ -3,7 +3,7 @@ ing2ofx
 =======
 Intro
 -----
-The intend of this script is to convert ing (www.ing.nl) csv files to ofx files 
+The intent of this script is to convert ing (www.ing.nl) csv files to ofx files 
 that can be read by a program like GnuCash (www.gucash.org).
 
 This script is adapted from pb2ofx.pl Copyright 2008, 2009, 2010 Peter Vermaas,
@@ -17,7 +17,7 @@ Usage
 ::
 
     usage: ing2ofx [-h] [-o, --outfile OUTFILE] [-d, --directory DIR]
-                   [-c, --convert]
+                   [-c, --convert] [-b, --convert-date]
                    csvfile
 
     This program converts ING (www.ing.nl) CSV files to OFX format. The default
@@ -33,7 +33,7 @@ Usage
       -d, --directory DIR   Directory to store output, default is ./ofx
       -c, --convert         Convert decimal separator to dots (.), default is
                             false
-
+      -b, --convert-date    Convert dates with dd-mm-yyyy notation to yyyymmdd
 
 Output
 ------

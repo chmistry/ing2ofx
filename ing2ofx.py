@@ -46,6 +46,8 @@ parser.add_argument('-d, --directory', dest = 'dir',
    help = 'Directory to store output, default is ./ofx', default='ofx')
 parser.add_argument('-c, --convert', dest = 'convert', 
    help = "Convert decimal separator to dots (.), default is false", action='store_true')
+parser.add_argument('-b, --convert-date', dest = 'convert_date', 
+   help = "Convert dates with dd-mm-yyyy notation to yyyymmdd", action='store_true')
 args = parser.parse_args()
 
 """ Read the csv file into a list, which is mapped to ofx fields """
@@ -77,7 +79,13 @@ class csvfile():
                trntype = 'OTHER'
             
             #The DTPOSTED is in yyyymmdd format, which is compatible with ofx
-            dtposted = row['Datum']
+            #If convert_date is true, first convert dd-mm-yyyy to yyyymmdd
+            if args.convert_date:
+               datevar = row['Datum'].split('-')
+               datevar.reverse()
+               dtposted = ''.join(datevar)
+            else:
+               dtposted = row['Datum']
             
             #The TRNAMT needs to be converted to negative if applicable,
             #When convert is set, comma decimal separator is replaced with dot.
@@ -162,11 +170,6 @@ class ofxwriter():
       mindate = 999999999
       maxdate = 0
       
-      #print some statistics:
-      print "TRANSACTIONS: "+str(len(csv.transactions))
-      print "IN:           "+args.csvfile
-      print "OUT:          "+filename
-      
       for trns in csv.transactions:
          accounts.add(trns['account'])
          if int(trns['dtposted']) < mindate:
@@ -225,7 +228,12 @@ class ofxwriter():
 </OFX>
       """
          ofxfile.write(message_footer)
-         
+
+      #print some statistics:
+      print "TRANSACTIONS: "+str(len(csv.transactions))
+      print "IN:           "+args.csvfile
+      print "OUT:          "+filename
+
 if __name__ == "__main__":
    ofx = ofxwriter()
 
