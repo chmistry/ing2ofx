@@ -12,6 +12,9 @@ which is now offline.
 
 The ofx specification can be downloaded from http://www.ofx.net/
 
+A tutorial on how to keep your bank records in GnuCash can be read on:
+http://www.chmistry.nl/financien/beginnen-met-boekhouden-in-gnucash/
+
 Usage - Graphical user interface:
 ---------------------------------
 ::
