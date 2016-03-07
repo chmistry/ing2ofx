@@ -12,8 +12,13 @@ which is now offline.
 
 The ofx specification can be downloaded from http://www.ofx.net/
 
-Usage
------
+Usage - Graphical user interface:
+---------------------------------
+::
+On the command line: python gui.py
+
+Usage - command line:
+---------------------
 ::
 
     usage: ing2ofx [-h] [-o, --outfile OUTFILE] [-d, --directory DIR]
