@@ -16,7 +16,7 @@ Usage - Graphical user interface:
 ---------------------------------
 ::
 
-On the command line: python gui.py
+    On the command line: python gui.py
 
 Usage - command line:
 ---------------------
