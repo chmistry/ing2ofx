@@ -15,6 +15,11 @@ The ofx specification can be downloaded from http://www.ofx.net/
 A tutorial on how to keep your bank records in GnuCash can be read on:
 http://www.chmistry.nl/financien/beginnen-met-boekhouden-in-gnucash/
 
+Windows users
+-------------
+Now available Graphical User Interface with all-in-one msi installer:
+See https://github.com/chmistry/ing2ofx/releases
+
 Usage - Graphical user interface:
 ---------------------------------
 ::
