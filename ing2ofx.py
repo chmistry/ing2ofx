@@ -33,6 +33,7 @@ import csv
 import argparse
 import datetime
 import os
+import re
 
 """ Read the csv file into a list, which is mapped to ofx fields """
 
@@ -45,6 +46,10 @@ class CsvFile:
                   'OV': 'xx', 'VZ': 'xx', 'IC': 'DIRECTDEBIT', 'ST': 'DIRECTDEP'}
         self.transactions = list()
         args = args
+
+        # Keep track of used IDs to prevent double IDs
+        idslist = []
+        idcount = 1
 
         with open(args.csvfile, 'rb') as csvfile:
             # Open the csvfile as a Dictreader
@@ -84,10 +89,6 @@ class CsvFile:
                 else:
                     trnamt = "-" + row['Bedrag (EUR)']
 
-                # the FITID is composed of the date and amount
-                fitid = dtposted + \
-                    trnamt.replace(",", "").replace("-", "").replace(".", "")
-
                 # NAME maps to "Naam / Omschrijving", the while loop removes
                 # any double spaces.
                 while row['Naam / Omschrijving'].strip().find("  ") > 0:
@@ -106,6 +107,24 @@ class CsvFile:
                         'Mededelingen'].strip().replace("  ", " ")
                 # Replace & symbol with &amp to make xml compliant
                 memo = str(row['Mededelingen']).replace("&", "&amp")
+
+                # Extract time from "Mededelingen"
+                time = ""
+                matches = re.search("\s([0-9]{2}:[0-9]{2})\s", memo)
+                if matches:
+                  time = matches.group(1).replace(":", "")
+
+                # the FITID is composed of the bankaccountto, time, date and amount
+                fitid = accountto + dtposted + time + \
+                    trnamt.replace(",", "").replace("-", "").replace(".", "")
+
+                # Check if we already used a certain ID
+                while fitid in idslist:
+                  idcount = idcount + 1
+                  fitid = fitid + str(idcount)
+
+                # Append ID to list with IDs
+                idslist.append(fitid)
 
                 self.transactions.append(
                     {'account': account, 'trntype': trntype, 'dtposted': dtposted,
