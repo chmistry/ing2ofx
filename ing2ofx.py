@@ -49,7 +49,6 @@ class CsvFile:
 
         # Keep track of used IDs to prevent double IDs
         idslist = []
-        idcount = 1
 
         with open(args.csvfile, 'rb') as csvfile:
             # Open the csvfile as a Dictreader
@@ -119,16 +118,18 @@ class CsvFile:
                     trnamt.replace(",", "").replace("-", "").replace(".", "")
 
                 # Check if we already used a certain ID
-                while fitid in idslist:
+                idcount = 0
+                uniqueid = fitid
+                while uniqueid in idslist:
                   idcount = idcount + 1
-                  fitid = fitid + str(idcount)
+                  uniqueid = fitid + str(idcount)
 
                 # Append ID to list with IDs
-                idslist.append(fitid)
+                idslist.append(uniqueid)
 
                 self.transactions.append(
                     {'account': account, 'trntype': trntype, 'dtposted': dtposted,
-                     'trnamt': trnamt, 'fitid': fitid, 'name': name, 'accountto': accountto,
+                     'trnamt': trnamt, 'fitid': uniqueid, 'name': name, 'accountto': accountto,
                      'memo': memo})
 
 
