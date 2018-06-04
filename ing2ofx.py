@@ -50,7 +50,7 @@ class CsvFile:
         # Keep track of used IDs to prevent double IDs
         idslist = []
 
-        with open(args.csvfile, 'rb') as csvfile:
+        with open(args.csvfile, 'r') as csvfile:
             # Open the csvfile as a Dictreader
             csvreader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
             for row in csvreader:
@@ -250,9 +250,9 @@ class OfxWriter:
 
         if not gui:
             # print some statistics:
-            print "TRANSACTIONS: " + str(len(csv.transactions))
-            print "IN:           " + args.csvfile
-            print "OUT:          " + filename
+            print ("TRANSACTIONS: " + str(len(csv.transactions)))
+            print ("IN:           " + args.csvfile)
+            print ("OUT:          " + filename)
         else:
             self.stats_transactions = "TRANSACTIONS: " + \
                 str(len(csv.transactions))
