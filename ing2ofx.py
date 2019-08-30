@@ -106,6 +106,8 @@ class CsvFile:
                         'Mededelingen'].strip().replace("  ", " ")
                 # Replace & symbol with &amp to make xml compliant
                 memo = str(row['Mededelingen']).replace("&", "&amp")
+                memo += " Mutatiesoort: "
+                memo += row['MutatieSoort']
 
                 # Extract time from "Mededelingen"
                 time = ""
