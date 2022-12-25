@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 #       ing2ofx.py
@@ -50,9 +50,9 @@ class CsvFile:
         # Keep track of used IDs to prevent double IDs
         idslist = []
 
-        with open(args.csvfile, 'rb') as csvfile:
+        with open(args.csvfile, 'r') as csvfile:
             # Open the csvfile as a Dictreader
-            csvreader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
+            csvreader = csv.DictReader(csvfile, delimiter=args.delimiter, quotechar='"')
             for row in csvreader:
                 # Map ACCOUNT to "Rekening"
                 account = row['Rekening'].replace(" ", "")
@@ -250,14 +250,13 @@ class OfxWriter:
 
         if not gui:
             # print some statistics:
-            print "TRANSACTIONS: " + str(len(csv.transactions))
-            print "IN:           " + args.csvfile
-            print "OUT:          " + filename
+            print(f"TRANSACTIONS: {str(len(csv.transactions))}")
+            print(f"IN:           {args.csvfile}")
+            print(f"OUT:          {filename}")
         else:
-            self.stats_transactions = "TRANSACTIONS: " + \
-                str(len(csv.transactions))
-            self.stats_in = "IN:           " + args.csvfile
-            self.stats_out = "OUT:          " + filepath
+            self.stats_transactions = f"TRANSACTIONS: {str(len(csv.transactions))}"
+            self.stats_in = f"IN:           {args.csvfile}"
+            self.stats_out = f"OUT:          {filepath}"
 
 if __name__ == "__main__":
     """ First parse the command line arguments. """
@@ -274,6 +273,8 @@ if __name__ == "__main__":
                         help="Convert decimal separator to dots (.), default is false", action='store_true')
     parser.add_argument('-b, --convert_date', dest='convert_date',
                         help="Convert dates with dd-mm-yyyy notation to yyyymmdd", action='store_true')
+    parser.add_argument('-l, --delimiter', dest='delimiter',
+                        help="Delimiter used within CVS file", default=',')
     args = parser.parse_args()
 
     ofx = OfxWriter(args, gui=False)

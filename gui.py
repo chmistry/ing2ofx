@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 #  gui.py
@@ -51,21 +51,24 @@ class Handler:
             outdir = self.gui.builder.get_object(
                 "filechooserbutton2").get_current_folder()
             if self.gui.builder.get_object("checkbutton3").get_active():
-                outfile = os.path.basename(csvfile)
+                outfile = os.path.basename(csvfile).replace("csv", "ofx").replace("CSV", "OFX")
             else:
                 outfile = self.gui.builder.get_object("entry1").get_text()
 
-            self.gui.push_text("Input:\n\tconvert: " + str(convert) + 
-                               "\n\t convert_date: " + str(convert_date) + 
+            self.gui.push_text("Input:\n\tconvert: " + str(convert) +
+                               "\n\t convert_date: " + str(convert_date) +
                                "\n\t csvfile: " + str(csvfile) +
-                               "\n\t outdir: " + str(outdir) + 
+                               "\n\t outdir: " + str(outdir) +
                                "\n\t outfile: " + str(outfile))
+
+            delimiter = self.gui.builder.get_object("comboboxDelimiter").get_active_id()
+            self.gui.push_text(f"delimiter: {delimiter}")
 
             convert = CsvConverter(
                 csvfile=csvfile, outfile=outfile, dir=outdir, convert=convert,
-                convert_date=convert_date)
+                convert_date=convert_date, delimiter=delimiter)
 
-            self.gui.push_text(convert.stats_transactions + 
+            self.gui.push_text(convert.stats_transactions +
                                 "\n\t" + convert.stats_in +
                                 "\n\t" + convert.stats_out)
             break
@@ -123,12 +126,13 @@ class Arguments_container:
         self.dir = None
         self.convert = None
         self.convert_date = None
+        self.delimiter = None
 
 
 class CsvConverter:
 
     def __init__(self, csvfile, outfile, dir='./ofx', convert=False,
-                 convert_date=False):
+                 convert_date=False, delimiter=','):
 
         self.args = Arguments_container()
         self.args.outfile = outfile
@@ -136,6 +140,7 @@ class CsvConverter:
         self.args.dir = dir
         self.args.convert = convert
         self.args.convert_date = convert_date
+        self.args.delimiter = delimiter
 
         ofx = ing2ofx.OfxWriter(self.args, gui=True)
 
